@@ -1,3 +1,7 @@
+body{
+    overflow: hidden;
+}
+
 .main {
     display: flex;
     justify-content: center;
@@ -65,4 +69,84 @@
 
 .line4 {
     transform: rotate(157.5deg);
+}
+
+.note_1{
+    position: absolute;
+    top: 17%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+    font-weight: bold;
+    color: #FFF;
+}
+
+.note_2{
+    position: absolute;
+    top: 23%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+    font-weight: bold;
+    color: #FFF;
+}
+
+.note_3{
+    position: absolute;
+    top: 50%;
+    left: 83%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+    font-weight: bold;
+    color: #FFF;
+}
+
+.note_4{
+    position: absolute;
+    top: 75%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+    font-weight: bold;
+    color: #FFF;
+}
+
+.note_5{
+    position: absolute;
+    top: 83%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+    font-weight: bold;
+    color: #FFF;
+}
+
+.note_6{
+    position: absolute;
+    top: 75%;
+    left: 23%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+    font-weight: bold;
+    color: #FFF;
+}
+
+.note_7{
+    position: absolute;
+    top: 50%;
+    left: 17%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+    font-weight: bold;
+    color: #FFF;
+}
+
+.note_8{
+    position: absolute;
+    top: 23%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+    font-weight: bold;
+    color: #FFF;
 }

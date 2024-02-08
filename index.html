@@ -4,18 +4,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rotating Circles</title>
+    <title>FFVII Music UI</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <div class="main">
+    <div class="main container" id="startMessage" style="display: block;">
+        <h1>FFVII Music UI</h1>
+
+        <p>You all have seen <a href="https://twitter.com/HollowRiku/status/1755276974644236470">this cute UI to play music on FF VII Rebirth?</a></p>
+        <p>I did, and I thought it could be fun to reproduce it with javascript!</p>
+        <p>So plug your gamepad and click the start button!</p>
+
+        <button id="startAudioContext">Start Audio Context</button>
+    </div>
+
+    <div class="main" id="main" style="display: hidden;">
+        
         <div class="outer">
             <div class="line line1"></div>
             <div class="line line2"></div>
             <div class="line line3"></div>
             <div class="line line4"></div>
+
+            <div class="note_1">Do m</div>
+            <div class="note_2">Re m</div>
+            <div class="note_3">Mi m</div>
+            <div class="note_4">Fa m</div>
+            <div class="note_5">So ml</div>
+            <div class="note_6">La m</div>
+            <div class="note_7">Si m</div>
+            <div class="note_8"></div>
+
             <div class="mid">
                 <div class="inner" id="leftAxis">L</div>
             </div>
@@ -26,13 +47,24 @@
             <div class="line line2"></div>
             <div class="line line3"></div>
             <div class="line line4"></div>
+
+            <div class="note_1">Do</div>
+            <div class="note_2">Re</div>
+            <div class="note_3">Mi</div>
+            <div class="note_4">Fa</div>
+            <div class="note_5">Sol</div>
+            <div class="note_6">La</div>
+            <div class="note_7">Si</div>
+            <div class="note_8">Do'</div>
+
             <div class="mid">
                 <div class="inner" id="rightAxis">R</div>
             </div>
         </div>
     </div>
-
-    <script src="gamepad.js"></script>
+    <script src='https://surikov.github.io/webaudiofont/npm/dist/WebAudioFontPlayer.js'></script>
+    <script src='https://surikov.github.io/webaudiofontdata/sound/0750_Chaos_sf2_file.js'></script>
+    <script src="appInitializer.js" defer type="module"></script>
 </body>
 
 </html>
