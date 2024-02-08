@@ -1,0 +1,68 @@
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.outer {
+    position: relative;
+    width: 192px;
+    height: 192px;
+    border-radius: 50%;
+    background-color: #555;
+}
+
+.mid {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background-color: #FFF;
+}
+
+.inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #555;
+    transition: transform 0.1s ease;
+    transform: translate(-50%, -50%);
+
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
+    color: #FFF;
+}
+
+.line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #FFF;
+}
+
+.line1 {
+    transform: rotate(22.5deg);
+}
+
+.line2 {
+    transform: rotate(67.5deg);
+}
+
+.line3 {
+    transform: rotate(112.5deg);
+}
+
+.line4 {
+    transform: rotate(157.5deg);
+}
