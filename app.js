@@ -2,6 +2,17 @@
 class App {
     constructor(audioContext) {
 
+        this.leftNotes = [
+            [{ key: -1, name: "Do m", domId: "left_note_0" }, { key: 1, name: "Re m", domId: "left_note_1" }, { key: 3, name: "Mi m", domId: "left_note_2" }, { key: 4, name: "Fa m", domId: "left_note_3" }, { key: 6, name: "Sol m", domId: "left_note_4" }, { key: 8, name: "La m", domId: "left_note_5" }, { key: 10, name: "Si m", domId: "left_note_6" }, { key: null, name: "", domId: "left_note_7" }],
+            [{ key: 0, name: "" }, { key: 2, name: "" }, { key: 4, name: "" }, { key: 6, name: "" }, { key: 8, name: "" }, { key: 10, name: "" }, { key: 23, name: "" }],
+            [{ key: 0, name: "" }, { key: 2, name: "" }, { key: 4, name: "" }, { key: 6, name: "" }, { key: 8, name: "" }, { key: 10, name: "" }, { key: 23, name: "" }]
+        ];
+
+        this.rightNotes = [
+            [{ key: 0, name: "Do", domId: "right_note_0" }, { key: 2, name: "Re", domId: "right_note_1" }, { key: 4, name: "Mi", domId: "right_note_2" }, { key: 5, name: "Fa", domId: "right_note_3" }, { key: 7, name: "Sol", domId: "right_note_4" }, { key: 9, name: "La", domId: "right_note_5" }, { key: 11, name: "Si", domId: "right_note_6" }, { key: 12, name: "Do'", domId: "right_note_7" }],
+            [{ key: 0, name: "" }, { key: 2, name: "" }, { key: 4, name: "" }, { key: 6, name: "" }, { key: 8, name: "" }, { key: 10, name: "" }, { key: 23, name: "" }, { key: 23, name: "Do'" }]
+        ];
+
         this.leftNote = {};
         this.rightNote = {};
         this.octave = 5;
@@ -21,6 +32,7 @@ class App {
             window.webkitRequestAnimationFrame ||
             window.requestAnimationFrame);
         this.initEventHandlers();
+        this.draw();
     }
 
     connecthandler(e) {
@@ -51,18 +63,27 @@ class App {
             var leftAxis = document.getElementById("leftAxis");
             var rightAxis = document.getElementById("rightAxis");
 
-            let newLeftNote = this.getNote(this.octave, 1, controller.axes[0], controller.axes[1]);
-            let newRightNote = this.getNote(this.octave, 0, controller.axes[2], controller.axes[3]);
+            let newLeftNote = this.getNote(this.octave, this.leftNotes[0], controller.axes[0], controller.axes[1]);
+            let newRightNote = this.getNote(this.octave, this.rightNotes[0], controller.axes[2], controller.axes[3]);
 
             this.leftNote = this.handleNote(newLeftNote, this.leftNote);
             this.rightNote = this.handleNote(newRightNote, this.rightNote);
-
+            this.draw();
             this.moveElement(leftAxis, controller.axes[0], controller.axes[1]);
             this.moveElement(rightAxis, controller.axes[2], controller.axes[3]);
         }
         (window.mozRequestAnimationFrame ||
             window.webkitRequestAnimationFrame ||
             window.requestAnimationFrame)(this.updateStatus.bind(this));
+    }
+
+    draw() {
+        this.leftNotes[0].forEach(note => {
+            document.getElementById(note.domId).innerText = note.name;
+        });
+        this.rightNotes[0].forEach(note => {
+            document.getElementById(note.domId).innerText = note.name;
+        });
     }
 
     scangamepads() {
@@ -108,41 +129,37 @@ class App {
         return previousNote;
     }
 
-    getNote(octave, minorscale, x, y) {
-        if (y > 0.5 && x < 0.5 && x > -0.5) {
-            //Do
-            return { key: octave * 12 + 0 - minorscale };
-        }
-        else if (x > 0.5 && y > 0.5) {
-            //Re
-            return { key: octave * 12 + 2 - minorscale };
-        }
-        else if (x > 0.5 && y < 0.5 && y > -0.5) {
-            //Mi
-            return { key: octave * 12 + 4 - minorscale };
+    getNote(octave, notes, x, y) {
+        let indexNote = -1;
+        if (y < -0.5 && x < 0.2 && x > -0.2) {
+            indexNote = 0;
         }
         else if (x > 0.5 && y < -0.5) {
-            //Fa
-            return { key: octave * 12 + 5 - minorscale };
+            indexNote = 1;
         }
-        else if (y < -0.5 && x < 0.5 && x > -0.5) {
-            //Sol
-            return { key: octave * 12 + 7 - minorscale };
+        else if (x > 0.5 && y < 0.2 && y > -0.2) {
+            indexNote = 2;
+        }
+        else if (x > 0.5 && y > 0.5) {
+            indexNote = 3;
+        }
+        else if (y > 0.5 && x < 0.2 && x > -0.2) {
+            indexNote = 4;
+        }
+        else if (y > 0.5 && x < -0.5) {
+            indexNote = 5;
+        }
+        else if (x < -0.5 && y < 0.2 && y > -0.2) {
+            indexNote = 6;
         }
         else if (x < -0.5 && y < -0.5) {
-            //La
-            return { key: octave * 12 + 9 - minorscale };
+            indexNote = 7;
         }
-        else if (x < -0.5 && y < 0.5 && y > -0.5) {
-            //Si
-            return { key: octave * 12 + 11 - minorscale };
-        }
-        else if (x < -0.5 && y > 0.5) {
-            //Do'
-            return { key: octave * 12 + 12 - minorscale };
+        if (indexNote === -1 || notes[indexNote].key === null) {
+            return null;
         }
         else {
-            return null;
+            return { key: octave * 12 + notes[indexNote].key };
         }
     }
 

@@ -55,23 +55,23 @@ body{
     background-color: #FFF;
 }
 
-.line1 {
+.line0 {
     transform: rotate(22.5deg);
 }
 
-.line2 {
+.line1 {
     transform: rotate(67.5deg);
 }
 
-.line3 {
+.line2 {
     transform: rotate(112.5deg);
 }
 
-.line4 {
+.line3 {
     transform: rotate(157.5deg);
 }
 
-.note_1{
+.note_0{
     position: absolute;
     top: 17%;
     left: 50%;
@@ -81,7 +81,7 @@ body{
     color: #FFF;
 }
 
-.note_2{
+.note_1{
     position: absolute;
     top: 23%;
     left: 75%;
@@ -91,7 +91,7 @@ body{
     color: #FFF;
 }
 
-.note_3{
+.note_2{
     position: absolute;
     top: 50%;
     left: 83%;
@@ -101,7 +101,7 @@ body{
     color: #FFF;
 }
 
-.note_4{
+.note_3{
     position: absolute;
     top: 75%;
     left: 75%;
@@ -111,7 +111,7 @@ body{
     color: #FFF;
 }
 
-.note_5{
+.note_4{
     position: absolute;
     top: 83%;
     left: 50%;
@@ -121,7 +121,7 @@ body{
     color: #FFF;
 }
 
-.note_6{
+.note_5{
     position: absolute;
     top: 75%;
     left: 23%;
@@ -131,7 +131,7 @@ body{
     color: #FFF;
 }
 
-.note_7{
+.note_6{
     position: absolute;
     top: 50%;
     left: 17%;
@@ -141,7 +141,7 @@ body{
     color: #FFF;
 }
 
-.note_8{
+.note_7{
     position: absolute;
     top: 23%;
     left: 25%;
