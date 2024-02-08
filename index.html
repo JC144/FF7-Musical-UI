@@ -13,7 +13,8 @@
     <div class="main container" id="startMessage" style="display: block;">
         <h1>FFVII Music UI</h1>
 
-        <p>You all have seen <a href="https://twitter.com/HollowRiku/status/1755276974644236470">this cute UI to play music on FF VII Rebirth?</a></p>
+        <p>You all have seen <a href="https://twitter.com/HollowRiku/status/1755276974644236470">this cute UI to play
+                music on FF VII Rebirth?</a></p>
         <p>I did, and I thought it could be fun to reproduce it with javascript!</p>
         <p>So plug your gamepad and click the start button!</p>
 
@@ -21,49 +22,74 @@
     </div>
 
     <div class="main" id="main" style="display: hidden;">
-        
-        <div class="outer">
-            <div class="line line0"></div>
-            <div class="line line1"></div>
-            <div class="line line2"></div>
-            <div class="line line3"></div>
+        <div class="instrument">
+            <div class="tones">
+                <div class="tone-button"
+                     id="left_tone_1">
+                    UP: Tons
+                </div>
+                <div class="tone-button"
+                     id="left_tone_2">
+                    L2: Semitones
+                </div>
+                <div class="tone-button"
+                    id="left_tone_3">
+                    L1: Mineur
+                </div>
+            </div>
 
-            <div id="left_note_0" class="note_0"></div>
-            <div id="left_note_1" class="note_1"></div>
-            <div id="left_note_2" class="note_2"></div>
-            <div id="left_note_3" class="note_3"></div>
-            <div id="left_note_4" class="note_4">l</div>
-            <div id="left_note_5" class="note_5"></div>
-            <div id="left_note_6" class="note_6"></div>
-            <div id="left_note_7" class="note_7"></div>
+            <div class="outer">
+                <div class="line line0"></div>
+                <div class="line line1"></div>
+                <div class="line line2"></div>
+                <div class="line line3"></div>
 
-            <div class="mid">
-                <div class="inner" id="leftAxis">L</div>
+                <div id="left_note_0" class="note_0"></div>
+                <div id="left_note_1" class="note_1"></div>
+                <div id="left_note_2" class="note_2"></div>
+                <div id="left_note_3" class="note_3"></div>
+                <div id="left_note_4" class="note_4">l</div>
+                <div id="left_note_5" class="note_5"></div>
+                <div id="left_note_6" class="note_6"></div>
+                <div id="left_note_7" class="note_7"></div>
+
+                <div class="mid">
+                    <div class="inner" id="leftAxis">L</div>
+                </div>
             </div>
         </div>
 
-        <div class="outer" style="margin-left: 32px;">
-            <div class="line line0"></div>
-            <div class="line line1"></div>
-            <div class="line line2"></div>
-            <div class="line line3"></div>
+        <div class="instrument">
+            <div class="tones">
+                <div class="tone-button"
+                    id="right_tone_1">
+                    R2: Semitones
+                </div>
+            </div>
 
-            <div id="right_note_0" class="note_0"></div>
-            <div id="right_note_1" class="note_1"></div>
-            <div id="right_note_2" class="note_2"></div>
-            <div id="right_note_3" class="note_3"></div>
-            <div id="right_note_4" class="note_4"></div>
-            <div id="right_note_5" class="note_5"></div>
-            <div id="right_note_6" class="note_6"></div>
-            <div id="right_note_7" class="note_7"></div>
+            <div class="outer" style="margin-left: 32px;">
+                <div class="line line0"></div>
+                <div class="line line1"></div>
+                <div class="line line2"></div>
+                <div class="line line3"></div>
 
-            <div class="mid">
-                <div class="inner" id="rightAxis">R</div>
+                <div id="right_note_0" class="note_0"></div>
+                <div id="right_note_1" class="note_1"></div>
+                <div id="right_note_2" class="note_2"></div>
+                <div id="right_note_3" class="note_3"></div>
+                <div id="right_note_4" class="note_4"></div>
+                <div id="right_note_5" class="note_5"></div>
+                <div id="right_note_6" class="note_6"></div>
+                <div id="right_note_7" class="note_7"></div>
+
+                <div class="mid">
+                    <div class="inner" id="rightAxis">R</div>
+                </div>
             </div>
         </div>
     </div>
     <script src='https://surikov.github.io/webaudiofont/npm/dist/WebAudioFontPlayer.js'></script>
-    <script src='https://surikov.github.io/webaudiofontdata/sound/0750_Chaos_sf2_file.js'></script>
+    <script src='https://surikov.github.io/webaudiofontdata/sound/0000_Chaos_sf2_file.js'></script>
     <script src="appInitializer.js" defer type="module"></script>
 </body>
 

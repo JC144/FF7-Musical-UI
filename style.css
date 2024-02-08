@@ -46,6 +46,40 @@ body{
     color: #FFF;
 }
 
+.instrument{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.tones{
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    vertical-align: middle;
+    height: 224px;
+}
+
+.tone-button{
+    /* Round corner, slightly transparent, white background, neon border */    
+    border-radius: 25px;
+    border-color: #000;
+    border-width: 2px;
+    border-style: solid;    
+    background-color: #000;
+    opacity: 0.45;
+    color: #FFF;
+    width: auto;
+    height: 32px;
+    margin: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+
+}
+
 .line {
     position: absolute;
     top: 50%;

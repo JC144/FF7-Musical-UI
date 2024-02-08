@@ -3,14 +3,15 @@ class App {
     constructor(audioContext) {
 
         this.leftNotes = [
+            [{ key: 0, name: "Do", domId: "left_note_0" }, { key: 2, name: "Re", domId: "left_note_1" }, { key: 4, name: "Mi", domId: "left_note_2" }, { key: 5, name: "Fa", domId: "left_note_3" }, { key: 7, name: "Sol", domId: "left_note_4" }, { key: 9, name: "La", domId: "left_note_5" }, { key: 11, name: "Si", domId: "left_note_6" }, { key: null, name: "", domId: "left_note_7" }],
             [{ key: -1, name: "Do m", domId: "left_note_0" }, { key: 1, name: "Re m", domId: "left_note_1" }, { key: 3, name: "Mi m", domId: "left_note_2" }, { key: 4, name: "Fa m", domId: "left_note_3" }, { key: 6, name: "Sol m", domId: "left_note_4" }, { key: 8, name: "La m", domId: "left_note_5" }, { key: 10, name: "Si m", domId: "left_note_6" }, { key: null, name: "", domId: "left_note_7" }],
-            [{ key: 0, name: "" }, { key: 2, name: "" }, { key: 4, name: "" }, { key: 6, name: "" }, { key: 8, name: "" }, { key: 10, name: "" }, { key: 23, name: "" }],
-            [{ key: 0, name: "" }, { key: 2, name: "" }, { key: 4, name: "" }, { key: 6, name: "" }, { key: 8, name: "" }, { key: 10, name: "" }, { key: 23, name: "" }]
+            [{ key: null, name: "", domId: "right_note_0" }, { key: 1, name: "Re♭", domId: "right_note_1" }, { key: 3, name: "Mi♭", domId: "right_note_2" }, { key: null, name: "", domId: "right_note_3" }, { key: 6, name: "Sol♭", domId: "right_note_4" }, { key: 8, name: "La♭", domId: "right_note_5" }, { key: 10, name: "Si♭", domId: "right_note_6" }, { key: null, name: "", domId: "right_note_7" }],
+            [{ key: -1, name: "Do m", domId: "left_note_0" }, { key: 1, name: "Re m", domId: "left_note_1" }, { key: 3, name: "Mi m", domId: "left_note_2" }, { key: 4, name: "Fa m", domId: "left_note_3" }, { key: 6, name: "Sol m", domId: "left_note_4" }, { key: 8, name: "La m", domId: "left_note_5" }, { key: 10, name: "Si m", domId: "left_note_6" }, { key: null, name: "", domId: "left_note_7" }],
         ];
 
         this.rightNotes = [
             [{ key: 0, name: "Do", domId: "right_note_0" }, { key: 2, name: "Re", domId: "right_note_1" }, { key: 4, name: "Mi", domId: "right_note_2" }, { key: 5, name: "Fa", domId: "right_note_3" }, { key: 7, name: "Sol", domId: "right_note_4" }, { key: 9, name: "La", domId: "right_note_5" }, { key: 11, name: "Si", domId: "right_note_6" }, { key: 12, name: "Do'", domId: "right_note_7" }],
-            [{ key: 0, name: "" }, { key: 2, name: "" }, { key: 4, name: "" }, { key: 6, name: "" }, { key: 8, name: "" }, { key: 10, name: "" }, { key: 23, name: "" }, { key: 23, name: "Do'" }]
+            [{ key: null, name: "", domId: "right_note_0" }, { key: 1, name: "Re♭", domId: "right_note_1" }, { key: 3, name: "Mi♭", domId: "right_note_2" }, { key: null, name: "", domId: "right_note_3" }, { key: 6, name: "Sol♭", domId: "right_note_4" }, { key: 8, name: "La♭", domId: "right_note_5" }, { key: 10, name: "Si♭", domId: "right_note_6" }, { key: null, name: "", domId: "right_note_7" }]
         ];
 
         this.leftNote = {};
@@ -19,11 +20,7 @@ class App {
 
         this.audioContext = audioContext;
         this.player = new WebAudioFontPlayer();
-        this.player.loader.decodeAfterLoading(audioContext, '_tone_0750_Chaos_sf2_file');
-
-        for (var i = 0; i < _tone_0750_Chaos_sf2_file.zones.length; i++) {
-            _tone_0750_Chaos_sf2_file.zones[i].ahdsr = false;
-        }
+        this.player.loader.decodeAfterLoading(audioContext, '_tone_0000_Chaos_sf2_file');
 
         this.haveEvents = 'GamepadEvent' in window;
         this.haveWebkitEvents = 'WebKitGamepadEvent' in window;
@@ -32,7 +29,7 @@ class App {
             window.webkitRequestAnimationFrame ||
             window.requestAnimationFrame);
         this.initEventHandlers();
-        this.draw();
+        this.draw(0, 0);
     }
 
     connecthandler(e) {
@@ -60,15 +57,29 @@ class App {
         for (let j in this.controllers) {
             var controller = this.controllers[j];
 
+            let leftTone = 0;
+
+            if (controller.buttons[12].pressed) {
+                leftTone = 1;
+            }
+            else if (controller.buttons[6].pressed) {
+                leftTone = 2;
+            }
+            else if (controller.buttons[4].pressed) {
+                leftTone = 3;
+            }
+
+            let rightTone = (controller.buttons[7].pressed) ? 1 : 0;
+
             var leftAxis = document.getElementById("leftAxis");
             var rightAxis = document.getElementById("rightAxis");
 
-            let newLeftNote = this.getNote(this.octave, this.leftNotes[0], controller.axes[0], controller.axes[1]);
-            let newRightNote = this.getNote(this.octave, this.rightNotes[0], controller.axes[2], controller.axes[3]);
+            let newLeftNote = this.getNote(this.octave, this.leftNotes[leftTone], controller.axes[0], controller.axes[1]);
+            let newRightNote = this.getNote(this.octave, this.rightNotes[rightTone], controller.axes[2], controller.axes[3]);
 
             this.leftNote = this.handleNote(newLeftNote, this.leftNote);
             this.rightNote = this.handleNote(newRightNote, this.rightNote);
-            this.draw();
+            this.draw(leftTone, rightTone);
             this.moveElement(leftAxis, controller.axes[0], controller.axes[1]);
             this.moveElement(rightAxis, controller.axes[2], controller.axes[3]);
         }
@@ -77,11 +88,24 @@ class App {
             window.requestAnimationFrame)(this.updateStatus.bind(this));
     }
 
-    draw() {
-        this.leftNotes[0].forEach(note => {
+    draw(leftTone, rightTone) {
+        for (let i = 1; i <= this.leftNotes.length - 1; i++) {
+            document.getElementById('left_tone_' + i).style.opacity = 0.45;
+        }
+        for (let i = 1; i <= this.rightNotes.length - 1; i++) {
+            document.getElementById('right_tone_' + i).style.opacity = 0.45;
+        }
+        if (leftTone > 0) {
+            document.getElementById('left_tone_' + leftTone).style.opacity = 0.75;
+        }
+        if (rightTone > 0) {
+            document.getElementById('right_tone_' + rightTone).style.opacity = 0.75;
+        }
+
+        this.leftNotes[leftTone].forEach(note => {
             document.getElementById(note.domId).innerText = note.name;
         });
-        this.rightNotes[0].forEach(note => {
+        this.rightNotes[rightTone].forEach(note => {
             document.getElementById(note.domId).innerText = note.name;
         });
     }
@@ -164,7 +188,7 @@ class App {
     }
 
     playNote(note) {
-        note.envelope = this.player.queueWaveTable(this.audioContext, this.audioContext.destination, _tone_0750_Chaos_sf2_file, 0, note.key, 999, true);
+        note.envelope = this.player.queueWaveTable(this.audioContext, this.audioContext.destination, _tone_0000_Chaos_sf2_file, 0, note.key, 999, true);
         return note;
     }
 
