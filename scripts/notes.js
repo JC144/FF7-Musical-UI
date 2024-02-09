@@ -2,15 +2,69 @@ class Notes {
     constructor(audio) {
         this.audio = audio;
         this.leftNotes = [
-            [{ key: 0, name: "Do", domId: "left_note_0" }, { key: 2, name: "Re", domId: "left_note_1" }, { key: 4, name: "Mi", domId: "left_note_2" }, { key: 5, name: "Fa", domId: "left_note_3" }, { key: 7, name: "Sol", domId: "left_note_4" }, { key: 9, name: "La", domId: "left_note_5" }, { key: 11, name: "Si", domId: "left_note_6" }, { key: null, name: "", domId: "left_note_7" }],
-            [{ key: -1, name: "Do m", domId: "left_note_0" }, { key: 1, name: "Re m", domId: "left_note_1" }, { key: 3, name: "Mi m", domId: "left_note_2" }, { key: 4, name: "Fa m", domId: "left_note_3" }, { key: 6, name: "Sol m", domId: "left_note_4" }, { key: 8, name: "La m", domId: "left_note_5" }, { key: 10, name: "Si m", domId: "left_note_6" }, { key: null, name: "", domId: "left_note_7" }],
-            [{ key: null, name: "", domId: "left_note_0" }, { key: 1, name: "Re♭", domId: "left_note_1" }, { key: 3, name: "Mi♭", domId: "left_note_2" }, { key: null, name: "", domId: "left_note_3" }, { key: 6, name: "Sol♭", domId: "left_note_4" }, { key: 8, name: "La♭", domId: "left_note_5" }, { key: 10, name: "Si♭", domId: "left_note_6" }, { key: null, name: "", domId: "left_note_7" }],
-            [{ key: -1, name: "Do m", domId: "left_note_0" }, { key: 1, name: "Re m", domId: "left_note_1" }, { key: 3, name: "Mi m", domId: "left_note_2" }, { key: 4, name: "Fa m", domId: "left_note_3" }, { key: 6, name: "Sol m", domId: "left_note_4" }, { key: 8, name: "La m", domId: "left_note_5" }, { key: 10, name: "Si m", domId: "left_note_6" }, { key: null, name: "", domId: "left_note_7" }],
+            [
+                { key: 0, name: { western: "C", solfege: "Do" }, domId: "left_note_0" },
+                { key: 2, name: { western: "D", solfege: "Re" }, domId: "left_note_1" },
+                { key: 4, name: { western: "E", solfege: "Mi" }, domId: "left_note_2" },
+                { key: 5, name: { western: "F", solfege: "Fa" }, domId: "left_note_3" },
+                { key: 7, name: { western: "G", solfege: "Sol" }, domId: "left_note_4" },
+                { key: 9, name: { western: "A", solfege: "La" }, domId: "left_note_5" },
+                { key: 11, name: { western: "B", solfege: "Si" }, domId: "left_note_6" },
+                { key: null, name: null, domId: "left_note_7" }
+            ],
+            [
+                { key: -1, name: { western: "Cm", solfege: "Do m" }, domId: "left_note_0" },
+                { key: 1, name: { western: "Dm", solfege: "Re m" }, domId: "left_note_1" },
+                { key: 3, name: { western: "Em", solfege: "Mi m" }, domId: "left_note_2" },
+                { key: 4, name: { western: "Fm", solfege: "Fa m" }, domId: "left_note_3" },
+                { key: 6, name: { western: "Gm", solfege: "Sol m" }, domId: "left_note_4" },
+                { key: 8, name: { western: "Am", solfege: "La m" }, domId: "left_note_5" },
+                { key: 10, name: { western: "Bm", solfege: "Si m" }, domId: "left_note_6" },
+                { key: null, name: null, domId: "left_note_7" }
+            ],
+            [
+                { key: null, name: null, domId: "left_note_0" },
+                { key: 1, name: { western: "D♭", solfege: "Re♭" }, domId: "left_note_1" },
+                { key: 3, name: { western: "E♭", solfege: "Mi♭" }, domId: "left_note_2" },
+                { key: null, name: null, domId: "left_note_3" },
+                { key: 6, name: { western: "G♭", solfege: "Sol♭" }, domId: "left_note_4" },
+                { key: 8, name: { western: "A♭", solfege: "La♭" }, domId: "left_note_5" },
+                { key: 10, name: { western: "B♭", solfege: "Si♭" }, domId: "left_note_6" },
+                { key: null, name: null, domId: "left_note_7" }
+            ],
+            [
+                { key: -1, name: { western: "Cm", solfege: "Do m" }, domId: "left_note_0" },
+                { key: 1, name: { western: "Dm", solfege: "Re m" }, domId: "left_note_1" },
+                { key: 3, name: { western: "Em", solfege: "Mi m" }, domId: "left_note_2" },
+                { key: 4, name: { western: "Fm", solfege: "Fa m" }, domId: "left_note_3" },
+                { key: 6, name: { western: "Gm", solfege: "Sol m" }, domId: "left_note_4" },
+                { key: 8, name: { western: "Am", solfege: "La m" }, domId: "left_note_5" },
+                { key: 10, name: { western: "Bm", solfege: "Si m" }, domId: "left_note_6" },
+                { key: null, name: null, domId: "left_note_7" }
+            ],
         ];
 
         this.rightNotes = [
-            [{ key: 0, name: "Do", domId: "right_note_0" }, { key: 2, name: "Re", domId: "right_note_1" }, { key: 4, name: "Mi", domId: "right_note_2" }, { key: 5, name: "Fa", domId: "right_note_3" }, { key: 7, name: "Sol", domId: "right_note_4" }, { key: 9, name: "La", domId: "right_note_5" }, { key: 11, name: "Si", domId: "right_note_6" }, { key: 12, name: "Do'", domId: "right_note_7" }],
-            [{ key: null, name: "", domId: "right_note_0" }, { key: 1, name: "Re♭", domId: "right_note_1" }, { key: 3, name: "Mi♭", domId: "right_note_2" }, { key: null, name: "", domId: "right_note_3" }, { key: 6, name: "Sol♭", domId: "right_note_4" }, { key: 8, name: "La♭", domId: "right_note_5" }, { key: 10, name: "Si♭", domId: "right_note_6" }, { key: null, name: "", domId: "right_note_7" }]
+            [
+                { key: 0, name: { western: "C", solfege: "Do" }, domId: "right_note_0" },
+                { key: 2, name: { western: "D", solfege: "Re" }, domId: "right_note_1" },
+                { key: 4, name: { western: "E", solfege: "Mi" }, domId: "right_note_2" },
+                { key: 5, name: { western: "F", solfege: "Fa" }, domId: "right_note_3" },
+                { key: 7, name: { western: "G", solfege: "Sol" }, domId: "right_note_4" },
+                { key: 9, name: { western: "A", solfege: "La" }, domId: "right_note_5" },
+                { key: 11, name: { western: "B", solfege: "Si" }, domId: "right_note_6" },
+                { key: 12, name: { western: "C'", solfege: "Do'" }, domId: "right_note_7" }
+            ],
+            [
+                { key: null, name: null, domId: "right_note_0" },
+                { key: 1, name: { western: "D♭", solfege: "Re♭" }, domId: "right_note_1" },
+                { key: 3, name: { western: "E♭", solfege: "Mi♭" }, domId: "right_note_2" },
+                { key: null, name: null, domId: "right_note_3" },
+                { key: 6, name: { western: "G♭", solfege: "Sol♭" }, domId: "right_note_4" },
+                { key: 8, name: { western: "A♭", solfege: "La♭" }, domId: "right_note_5" },
+                { key: 10, name: { western: "B♭", solfege: "Si♭" }, domId: "right_note_6" },
+                { key: null, name: null, domId: "right_note_7" }
+            ],
         ];
 
         this.leftNote = {};

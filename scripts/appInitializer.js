@@ -9,4 +9,16 @@ document.getElementById('startAudioContext').addEventListener('click', function 
     const app = new App(audio);
     document.getElementById('startMessage').style.display = 'none';
     document.getElementById('player-div').style.display = 'flex';
+    
+    let languagePicker = document.getElementById("languages");
+
+    //get navigator language and set picker
+    this.language = navigator.language;
+    if (this.language.includes("en")) {
+        languagePicker.value = "en";
+    } else if (this.language.includes("fr")) {
+        languagePicker.value = "fr";
+    } else if (this.language.includes("es")) {
+        languagePicker.value = "es";
+    }
 });

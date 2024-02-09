@@ -13,10 +13,11 @@
 <body>
     <div class="d-flex flex-column col-lg-8 mx-auto p-4 py-md-5 flex-grow-1">
         <header class="d-flex flex-column align-items-center pb-3 mb-3 border-bottom">
-            <h1 class="display-5"><a href="index.html">FFVII Music UI</a></h1>
+            <h1 class="display-5"><a href="index.html">FFVII Music UI</a></h1>            
         </header>
 
         <main class="flex-grow-1">
+            
             <div class="main container" id="startMessage" style="display: block;">
                 <p>You all have seen <a href="https://twitter.com/HollowRiku/status/1755276974644236470">this cute UI to
                         play
@@ -24,17 +25,23 @@
                 <p>I did, and I thought it could be fun to reproduce it with javascript!</p>
                 <p>So plug your gamepad and click the start button!</p>
 
-                <button id="startAudioContext"
-                class="btn-primary btn">Start!</button>
+                <button id="startAudioContext" class="btn-primary btn">Start!</button>
             </div>
 
-            <div class="main align-items-center" id="player-div"  style="display: none;">
+            <div class="main align-items-center" id="player-div" style="display: none;">
                 <div class="container">
+                    <div class="row">
+                        <select id="languages" aria-label="Pick your language" class="form-select ml-auto">
+                            <option value="en" selected>English</option>
+                            <option value="fr">Français</option>
+                            <option value="es">Castellano</option>
+                        </select>
+                    </div>
                     <div class="row">
                         <div class="col-4">
                             <div class="tone-button" id="left_tone_1">
                                 <img src="images/xbox/icons8-scroll-up-50.png" alt="up" class="img-gamepad-button" />
-                                Tons
+                                <span id="tons_label">Tons</span>
                             </div>
                         </div>
                     </div>
@@ -43,13 +50,13 @@
                         <div class="col-4">
                             <div class="tone-button" id="left_tone_2">
                                 <img src="images/xbox/icons8-xbox-lt-50.png" alt="up" class="img-gamepad-button" />
-                                Semitones
+                                <span id="left_semitones_label">Semitones</span>
                             </div>
                         </div>
                         <div class="col-4 align-self-end">
                             <div class="tone-button" id="right_tone_1">
                                 <img src="images/xbox/icons8-xbox-rt-50.png" alt="up" class="img-gamepad-button" />
-                                Semitones
+                                <span id="right_semitones_label">Semitones</span>
                             </div>
                         </div>
                     </div>
@@ -58,7 +65,7 @@
                         <div class="col-4">
                             <div class="tone-button" id="left_tone_3">
                                 <img src="images/xbox/icons8-xbox-lb-50.png" alt="up" class="img-gamepad-button" />
-                                Minor
+                                <span id="minor_label">Minor</span>
                             </div>
                         </div>
                     </div>
@@ -114,7 +121,8 @@
                         </div>
                         <div class="col-4 align-self-end">
                             <div class="octaves">
-                                <p id="octaveLabel" class="text-center mt-3 mb-0 label">Change octave</p>
+                                <p id="octaveLabel" class="text-center mt-3 mb-0 label"> <span id="change_octave_label">Change
+                                        octave</span></p>
                                 <div class="octave-button mb-0">
                                     <div id="octaveDown"><img src="images/xbox/icons8-xbox-x-50.png" alt="up"
                                             class="img-gamepad-button" /></div>
@@ -128,7 +136,8 @@
                                             class="img-gamepad-button" /></div>
                                 </div>
                                 <p id="octaveInit" class="text-center label"><img src="images/xbox/icons8-xbox-a-50.png"
-                                        alt="up" class="img-gamepad-button" /> Reinitialize octave</p>
+                                        alt="up" class="img-gamepad-button" /> <span
+                                        id="reinitialize_octave_label">Reinitialize octave</span></p>
                             </div>
                         </div>
                     </div>
@@ -145,7 +154,8 @@
                         href="https://twitter.com/jcvasselon/">Jean-Christophe VASSELON</a>.</p>
 
                 <p class="text-muted small text-center">Icons from <a href="https://icons8.com/">Icons8</a></p>
-                <p class="text-muted small text-center">Fork me on <a href="https://github.com/JC144/FF7-Musical-UI" alt="github">Github</a></p>
+                <p class="text-muted small text-center">Fork me on <a href="https://github.com/JC144/FF7-Musical-UI"
+                        alt="github">Github</a></p>
 
                 <p class="text-muted small text-center">
                     If you like my experiments, feel free to buy me a coffee!<br />
@@ -162,6 +172,10 @@
 
     <script src='https://surikov.github.io/webaudiofont/npm/dist/WebAudioFontPlayer.js'></script>
     <script src='https://surikov.github.io/webaudiofontdata/sound/0000_Chaos_sf2_file.js'></script>
+
+    <script src='scripts/i18n/en.js'></script>
+    <script src='scripts/i18n/es.js'></script>
+    <script src='scripts/i18n/fr.js'></script>
     <script src="scripts/appInitializer.js" defer type="module"></script>
 </body>
 

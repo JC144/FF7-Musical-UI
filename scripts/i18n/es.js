@@ -1,0 +1,15 @@
+es = {
+    tons: "tonos",
+    left_semitones: "semitonos",
+    right_semitones: "semitonos",
+    minor: "menor",
+    change_octave: "Cambiar octava",
+    reinitialize_octave: "Reiniciar octava",
+    do: "Do",
+    re: "Re",
+    mi: "Mi",
+    fa: "Fa",
+    sol: "Sol",
+    la: "La",
+    si: "Si",    
+}
