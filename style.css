@@ -61,7 +61,7 @@ body{
     height: 224px;
 }
 
-.tone-button{
+.tone-button, .octave-button{
     /* Round corner, slightly transparent, white background, neon border */    
     border-radius: 25px;
     border-color: #000;
@@ -77,7 +77,25 @@ body{
     justify-content: center;
     align-items: center;
     padding: 8px;
+}
 
+.gamepad-button{
+    width: 24px;
+    height: 24px;
+    border-radius: 24px;
+    border-color: #fff;
+    border-width: 2px;
+    border-style: solid; 
+}
+
+.octave-bullet{
+    width: 8px;
+    height: 8px;
+    border-radius: 8px;
+    border-color: #fff;
+    border-width: 2px;
+    border-style: solid; 
+    margin: 2px;
 }
 
 .line {

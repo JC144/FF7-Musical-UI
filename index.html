@@ -24,16 +24,13 @@
     <div class="main" id="main" style="display: hidden;">
         <div class="instrument">
             <div class="tones">
-                <div class="tone-button"
-                     id="left_tone_1">
+                <div class="tone-button" id="left_tone_1">
                     UP: Tons
                 </div>
-                <div class="tone-button"
-                     id="left_tone_2">
+                <div class="tone-button" id="left_tone_2">
                     L2: Semitones
                 </div>
-                <div class="tone-button"
-                    id="left_tone_3">
+                <div class="tone-button" id="left_tone_3">
                     L1: Mineur
                 </div>
             </div>
@@ -61,8 +58,7 @@
 
         <div class="instrument">
             <div class="tones">
-                <div class="tone-button"
-                    id="right_tone_1">
+                <div class="tone-button" id="right_tone_1">
                     R2: Semitones
                 </div>
             </div>
@@ -86,6 +82,22 @@
                     <div class="inner" id="rightAxis">R</div>
                 </div>
             </div>
+
+            <div class="octaves">
+                <p id="octaveLabel">Change octave</p>
+                <div class="octave-button">
+                    <div id="octaveDown" class="gamepad-button">X</div>
+                    <div id="octave-bullet-0" class="octave-bullet"></div>
+                    <div id="octave-bullet-1" class="octave-bullet"></div>
+                    <div id="octave-bullet-2" class="octave-bullet"></div>
+                    <div id="octave-bullet-3" class="octave-bullet"></div>
+                    <div id="octave-bullet-4" class="octave-bullet"></div>
+                    <div id="octave-bullet-5" class="octave-bullet"></div>
+                    <div id="octaveUp" class="gamepad-button">B</div>
+                </div>
+                <p id="octaveInit">A Reinitialize octave</p>
+            </div>
+
         </div>
     </div>
     <script src='https://surikov.github.io/webaudiofont/npm/dist/WebAudioFontPlayer.js'></script>

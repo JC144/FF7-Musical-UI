@@ -1,11 +1,11 @@
 
 class App {
     constructor(audioContext) {
-
+        this.keysPressed = [];
         this.leftNotes = [
             [{ key: 0, name: "Do", domId: "left_note_0" }, { key: 2, name: "Re", domId: "left_note_1" }, { key: 4, name: "Mi", domId: "left_note_2" }, { key: 5, name: "Fa", domId: "left_note_3" }, { key: 7, name: "Sol", domId: "left_note_4" }, { key: 9, name: "La", domId: "left_note_5" }, { key: 11, name: "Si", domId: "left_note_6" }, { key: null, name: "", domId: "left_note_7" }],
             [{ key: -1, name: "Do m", domId: "left_note_0" }, { key: 1, name: "Re m", domId: "left_note_1" }, { key: 3, name: "Mi m", domId: "left_note_2" }, { key: 4, name: "Fa m", domId: "left_note_3" }, { key: 6, name: "Sol m", domId: "left_note_4" }, { key: 8, name: "La m", domId: "left_note_5" }, { key: 10, name: "Si m", domId: "left_note_6" }, { key: null, name: "", domId: "left_note_7" }],
-            [{ key: null, name: "", domId: "right_note_0" }, { key: 1, name: "Re♭", domId: "right_note_1" }, { key: 3, name: "Mi♭", domId: "right_note_2" }, { key: null, name: "", domId: "right_note_3" }, { key: 6, name: "Sol♭", domId: "right_note_4" }, { key: 8, name: "La♭", domId: "right_note_5" }, { key: 10, name: "Si♭", domId: "right_note_6" }, { key: null, name: "", domId: "right_note_7" }],
+            [{ key: null, name: "", domId: "left_note_0" }, { key: 1, name: "Re♭", domId: "left_note_1" }, { key: 3, name: "Mi♭", domId: "left_note_2" }, { key: null, name: "", domId: "left_note_3" }, { key: 6, name: "Sol♭", domId: "left_note_4" }, { key: 8, name: "La♭", domId: "left_note_5" }, { key: 10, name: "Si♭", domId: "left_note_6" }, { key: null, name: "", domId: "left_note_7" }],
             [{ key: -1, name: "Do m", domId: "left_note_0" }, { key: 1, name: "Re m", domId: "left_note_1" }, { key: 3, name: "Mi m", domId: "left_note_2" }, { key: 4, name: "Fa m", domId: "left_note_3" }, { key: 6, name: "Sol m", domId: "left_note_4" }, { key: 8, name: "La m", domId: "left_note_5" }, { key: 10, name: "Si m", domId: "left_note_6" }, { key: null, name: "", domId: "left_note_7" }],
         ];
 
@@ -16,7 +16,7 @@ class App {
 
         this.leftNote = {};
         this.rightNote = {};
-        this.octave = 5;
+        this.octave = 4;
 
         this.audioContext = audioContext;
         this.player = new WebAudioFontPlayer();
@@ -29,7 +29,7 @@ class App {
             window.webkitRequestAnimationFrame ||
             window.requestAnimationFrame);
         this.initEventHandlers();
-        this.draw(0, 0);
+        this.draw(0, 0, this.octave);
     }
 
     connecthandler(e) {
@@ -38,6 +38,12 @@ class App {
 
     addgamepad(gamepad) {
         this.controllers[gamepad.index] = gamepad;
+
+        //init buttons state
+        this.keysPressed = [];
+        for (let i = 0; i < gamepad.buttons.length; i++) {
+            this.keysPressed.push(false);
+        }
 
         (window.mozRequestAnimationFrame ||
             window.webkitRequestAnimationFrame ||
@@ -54,8 +60,8 @@ class App {
 
     updateStatus() {
         this.scangamepads();
-        for (let j in this.controllers) {
-            var controller = this.controllers[j];
+        if (this.controllers[0]) {
+            var controller = this.controllers[0];
 
             let leftTone = 0;
 
@@ -69,6 +75,27 @@ class App {
                 leftTone = 3;
             }
 
+            if (controller.buttons[1].pressed && this.keysPressed[1] === false) {
+                this.keysPressed[1] = true;
+                if (this.octave < 6) {
+                    this.octave++;
+                }
+            }
+            if (controller.buttons[2].pressed && this.keysPressed[2] === false) {
+                this.keysPressed[2] = true;
+                if (this.octave > 1) {
+                    this.octave--;
+                }
+            }
+            if (controller.buttons[0].pressed) {
+                this.octave = 4;
+            }
+
+            //Reinit buttons state
+            for (let i = 0; i < controller.buttons.length; i++) {
+                this.keysPressed[i] = controller.buttons[i].pressed;
+            }
+
             let rightTone = (controller.buttons[7].pressed) ? 1 : 0;
 
             var leftAxis = document.getElementById("leftAxis");
@@ -79,7 +106,7 @@ class App {
 
             this.leftNote = this.handleNote(newLeftNote, this.leftNote);
             this.rightNote = this.handleNote(newRightNote, this.rightNote);
-            this.draw(leftTone, rightTone);
+            this.draw(leftTone, rightTone, this.octave);
             this.moveElement(leftAxis, controller.axes[0], controller.axes[1]);
             this.moveElement(rightAxis, controller.axes[2], controller.axes[3]);
         }
@@ -88,7 +115,7 @@ class App {
             window.requestAnimationFrame)(this.updateStatus.bind(this));
     }
 
-    draw(leftTone, rightTone) {
+    draw(leftTone, rightTone, octave) {
         for (let i = 1; i <= this.leftNotes.length - 1; i++) {
             document.getElementById('left_tone_' + i).style.opacity = 0.45;
         }
@@ -101,6 +128,12 @@ class App {
         if (rightTone > 0) {
             document.getElementById('right_tone_' + rightTone).style.opacity = 0.75;
         }
+
+        for (let i = 0; i < 6; i++) {
+            document.getElementById('octave-bullet-' + i).style.backgroundColor = 'black';
+        }
+
+        document.getElementById('octave-bullet-' + (octave - 1)).style.backgroundColor = 'white';
 
         this.leftNotes[leftTone].forEach(note => {
             document.getElementById(note.domId).innerText = note.name;
@@ -155,36 +188,56 @@ class App {
 
     getNote(octave, notes, x, y) {
         let indexNote = -1;
-        if (y < -0.5 && x < 0.2 && x > -0.2) {
-            indexNote = 0;
-        }
-        else if (x > 0.5 && y < -0.5) {
-            indexNote = 1;
-        }
-        else if (x > 0.5 && y < 0.2 && y > -0.2) {
-            indexNote = 2;
-        }
-        else if (x > 0.5 && y > 0.5) {
-            indexNote = 3;
-        }
-        else if (y > 0.5 && x < 0.2 && x > -0.2) {
-            indexNote = 4;
-        }
-        else if (y > 0.5 && x < -0.5) {
-            indexNote = 5;
-        }
-        else if (x < -0.5 && y < 0.2 && y > -0.2) {
-            indexNote = 6;
-        }
-        else if (x < -0.5 && y < -0.5) {
-            indexNote = 7;
-        }
-        if (indexNote === -1 || notes[indexNote].key === null) {
-            return null;
-        }
-        else {
+        let angle = this.calculateAngle(x, y);
+        let distance = Math.sqrt(x * x + y * y);
+
+        if (distance > 0.5) {
+            if (angle > 247.5 && angle < 292.5) {
+                indexNote = 0;
+            }
+            else if (angle > 292.5 && angle < 337.5) {
+                indexNote = 1;
+            }
+            else if (angle > 337.5 || angle < 22.5) {
+                indexNote = 2;
+            }
+            else if (angle > 22.5 && angle < 67.5) {
+                indexNote = 3;
+            }
+            else if (angle > 67.5 && angle < 112.5) {
+                indexNote = 4;
+            }
+            else if (angle > 112.5 && angle < 157.5) {
+                indexNote = 5;
+            }
+            else if (angle > 157.5 && angle < 202.5) {
+                indexNote = 6;
+            }
+            else if (angle > 202.5 && angle < 247.5) {
+                indexNote = 7;
+            }
+
+            if (indexNote === -1 || notes[indexNote].key === null) {
+                return null;
+            }
+
             return { key: octave * 12 + notes[indexNote].key };
         }
+    }
+
+    calculateAngle(x, y) {
+        // Calculate the angle in radians
+        let angleRadians = Math.atan2(y, x);
+
+        // Convert radians to degrees
+        let angleDegrees = angleRadians * (180 / Math.PI);
+
+        // Make sure the angle is positive
+        if (angleDegrees < 0) {
+            angleDegrees += 360;
+        }
+
+        return angleDegrees;
     }
 
     playNote(note) {
