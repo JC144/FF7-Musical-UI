@@ -117,23 +117,23 @@ class App {
 
     draw(leftTone, rightTone, octave) {
         for (let i = 1; i <= this.leftNotes.length - 1; i++) {
-            document.getElementById('left_tone_' + i).style.opacity = 0.45;
+            document.getElementById('left_tone_' + i).style.backgroundColor = '#FFF';
         }
         for (let i = 1; i <= this.rightNotes.length - 1; i++) {
-            document.getElementById('right_tone_' + i).style.opacity = 0.45;
+            document.getElementById('right_tone_' + i).style.backgroundColor = '#FFF';
         }
         if (leftTone > 0) {
-            document.getElementById('left_tone_' + leftTone).style.opacity = 0.75;
+            document.getElementById('left_tone_' + leftTone).style.backgroundColor = 'lightblue';
         }
         if (rightTone > 0) {
-            document.getElementById('right_tone_' + rightTone).style.opacity = 0.75;
+            document.getElementById('right_tone_' + rightTone).style.backgroundColor = 'lightblue';
         }
 
         for (let i = 0; i < 6; i++) {
-            document.getElementById('octave-bullet-' + i).style.backgroundColor = 'black';
+            document.getElementById('octave-bullet-' + i).style.backgroundColor = 'white';
         }
 
-        document.getElementById('octave-bullet-' + (octave - 1)).style.backgroundColor = 'white';
+        document.getElementById('octave-bullet-' + (octave - 1)).style.backgroundColor = 'black';
 
         this.leftNotes[leftTone].forEach(note => {
             document.getElementById(note.domId).innerText = note.name;

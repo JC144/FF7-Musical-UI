@@ -1,4 +1,4 @@
-body{
+body {
     overflow: hidden;
 }
 
@@ -46,14 +46,14 @@ body{
     color: #FFF;
 }
 
-.instrument{
+.instrument {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.tones{
+.tones {
     display: flex;
     flex-direction: column;
     justify-content: stretch;
@@ -61,17 +61,20 @@ body{
     height: 224px;
 }
 
-.tone-button, .octave-button{
-    /* Round corner, slightly transparent, white background, neon border */    
+.label {
+    font-size: 1.2em;
+}
+
+.tone-button,
+.octave-button {
+    /* Round corner, slightly transparent, white background, neon border */
     border-radius: 25px;
     border-color: #000;
     border-width: 2px;
-    border-style: solid;    
-    background-color: #000;
-    opacity: 0.45;
-    color: #FFF;
+    border-style: solid;
+    color: #000;
     width: auto;
-    height: 32px;
+    height: 42px;
     margin: 8px;
     display: flex;
     justify-content: center;
@@ -79,22 +82,34 @@ body{
     padding: 8px;
 }
 
-.gamepad-button{
+.background-overlay {
+    display: hidden;
+    background-color: #FFF;
+    opacity: 0.5;
+}
+
+.img-gamepad-button {
+    width: 32px;
+    height: 32px;
+    margin: 8px;
+}
+
+.gamepad-button {
     width: 24px;
     height: 24px;
     border-radius: 24px;
     border-color: #fff;
     border-width: 2px;
-    border-style: solid; 
+    border-style: solid;
 }
 
-.octave-bullet{
+.octave-bullet {
     width: 8px;
     height: 8px;
     border-radius: 8px;
-    border-color: #fff;
+    border-color: #000;
     border-width: 2px;
-    border-style: solid; 
+    border-style: solid;
     margin: 2px;
 }
 
@@ -123,7 +138,7 @@ body{
     transform: rotate(157.5deg);
 }
 
-.note_0{
+.note_0 {
     position: absolute;
     top: 17%;
     left: 50%;
@@ -133,7 +148,7 @@ body{
     color: #FFF;
 }
 
-.note_1{
+.note_1 {
     position: absolute;
     top: 23%;
     left: 75%;
@@ -143,7 +158,7 @@ body{
     color: #FFF;
 }
 
-.note_2{
+.note_2 {
     position: absolute;
     top: 50%;
     left: 83%;
@@ -153,7 +168,7 @@ body{
     color: #FFF;
 }
 
-.note_3{
+.note_3 {
     position: absolute;
     top: 75%;
     left: 75%;
@@ -163,7 +178,7 @@ body{
     color: #FFF;
 }
 
-.note_4{
+.note_4 {
     position: absolute;
     top: 83%;
     left: 50%;
@@ -173,7 +188,7 @@ body{
     color: #FFF;
 }
 
-.note_5{
+.note_5 {
     position: absolute;
     top: 75%;
     left: 23%;
@@ -183,7 +198,7 @@ body{
     color: #FFF;
 }
 
-.note_6{
+.note_6 {
     position: absolute;
     top: 50%;
     left: 17%;
@@ -193,7 +208,7 @@ body{
     color: #FFF;
 }
 
-.note_7{
+.note_7 {
     position: absolute;
     top: 23%;
     left: 25%;
