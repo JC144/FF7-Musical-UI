@@ -8,5 +8,5 @@ document.getElementById('startAudioContext').addEventListener('click', function 
     const audio = new Audio(audioContext);
     const app = new App(audio);
     document.getElementById('startMessage').style.display = 'none';
-    document.getElementById('main').style.display = 'flex';
+    document.getElementById('player-div').style.display = 'flex';
 });

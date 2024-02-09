@@ -11,119 +11,151 @@
 </head>
 
 <body>
+    <div class="d-flex flex-column col-lg-8 mx-auto p-4 py-md-5 flex-grow-1">
+        <header class="d-flex flex-column align-items-center pb-3 mb-3 border-bottom">
+            <h1 class="display-5"><a href="index.html">FFVII Music UI</a></h1>
+        </header>
 
-    <div class="main container" id="startMessage" style="display: block;">
-        <h1>FFVII Music UI</h1>
+        <main class="flex-grow-1">
+            <div class="main container" id="startMessage" style="display: block;">
+                <p>You all have seen <a href="https://twitter.com/HollowRiku/status/1755276974644236470">this cute UI to
+                        play
+                        music on FF VII Rebirth?</a></p>
+                <p>I did, and I thought it could be fun to reproduce it with javascript!</p>
+                <p>So plug your gamepad and click the start button!</p>
 
-        <p>You all have seen <a href="https://twitter.com/HollowRiku/status/1755276974644236470">this cute UI to play
-                music on FF VII Rebirth?</a></p>
-        <p>I did, and I thought it could be fun to reproduce it with javascript!</p>
-        <p>So plug your gamepad and click the start button!</p>
+                <button id="startAudioContext"
+                class="btn-primary btn">Start!</button>
+            </div>
 
-        <button id="startAudioContext">Start Audio Context</button>
+            <div class="main align-items-center" id="player-div"  style="display: none;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="tone-button" id="left_tone_1">
+                                <img src="images/xbox/icons8-scroll-up-50.png" alt="up" class="img-gamepad-button" />
+                                Tons
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="tone-button" id="left_tone_2">
+                                <img src="images/xbox/icons8-xbox-lt-50.png" alt="up" class="img-gamepad-button" />
+                                Semitones
+                            </div>
+                        </div>
+                        <div class="col-4 align-self-end">
+                            <div class="tone-button" id="right_tone_1">
+                                <img src="images/xbox/icons8-xbox-rt-50.png" alt="up" class="img-gamepad-button" />
+                                Semitones
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="tone-button" id="left_tone_3">
+                                <img src="images/xbox/icons8-xbox-lb-50.png" alt="up" class="img-gamepad-button" />
+                                Minor
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-4">
+                            <div class="outer mx-auto">
+                                <div class="line line0"></div>
+                                <div class="line line1"></div>
+                                <div class="line line2"></div>
+                                <div class="line line3"></div>
+
+                                <div id="left_note_0" class="note_0"></div>
+                                <div id="left_note_1" class="note_1"></div>
+                                <div id="left_note_2" class="note_2"></div>
+                                <div id="left_note_3" class="note_3"></div>
+                                <div id="left_note_4" class="note_4">l</div>
+                                <div id="left_note_5" class="note_5"></div>
+                                <div id="left_note_6" class="note_6"></div>
+                                <div id="left_note_7" class="note_7"></div>
+
+                                <div class="mid">
+                                    <div class="inner" id="leftAxis">L</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="outer mx-auto">
+                                <div class="line line0"></div>
+                                <div class="line line1"></div>
+                                <div class="line line2"></div>
+                                <div class="line line3"></div>
+
+                                <div id="right_note_0" class="note_0"></div>
+                                <div id="right_note_1" class="note_1"></div>
+                                <div id="right_note_2" class="note_2"></div>
+                                <div id="right_note_3" class="note_3"></div>
+                                <div id="right_note_4" class="note_4"></div>
+                                <div id="right_note_5" class="note_5"></div>
+                                <div id="right_note_6" class="note_6"></div>
+                                <div id="right_note_7" class="note_7"></div>
+
+                                <div class="mid">
+                                    <div class="inner" id="rightAxis">R</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-4">
+
+                        </div>
+                        <div class="col-4 align-self-end">
+                            <div class="octaves">
+                                <p id="octaveLabel" class="text-center mt-3 mb-0 label">Change octave</p>
+                                <div class="octave-button mb-0">
+                                    <div id="octaveDown"><img src="images/xbox/icons8-xbox-x-50.png" alt="up"
+                                            class="img-gamepad-button" /></div>
+                                    <div id="octave-bullet-0" class="octave-bullet"></div>
+                                    <div id="octave-bullet-1" class="octave-bullet"></div>
+                                    <div id="octave-bullet-2" class="octave-bullet"></div>
+                                    <div id="octave-bullet-3" class="octave-bullet"></div>
+                                    <div id="octave-bullet-4" class="octave-bullet"></div>
+                                    <div id="octave-bullet-5" class="octave-bullet"></div>
+                                    <div id="octaveUp"><img src="images/xbox/icons8-xbox-b-50.png" alt="up"
+                                            class="img-gamepad-button" /></div>
+                                </div>
+                                <p id="octaveInit" class="text-center label"><img src="images/xbox/icons8-xbox-a-50.png"
+                                        alt="up" class="img-gamepad-button" /> Reinitialize octave</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
 
-    <div class="main" id="main" style="display: hidden;">
-
+    <footer class="bg-dark-subtle p-4 fs-6">
         <div class="container">
-            <div class="row">
-                <div class="col-4">
-                    <div class="tone-button" id="left_tone_1">
-                        <img src="images/xbox/icons8-scroll-up-50.png" alt="up" class="img-gamepad-button"/> Tons
-                    </div>
-                </div>
-            </div>
+            <div class="text-center">
 
-            <div class="row">
-                <div class="col-4">
-                    <div class="tone-button" id="left_tone_2">
-                        <img src="images/xbox/icons8-xbox-lt-50.png" alt="up" class="img-gamepad-button"/> Semitones
-                    </div>
-                </div>
-                <div class="col-4 align-self-end">
-                    <div class="tone-button" id="right_tone_1">
-                        <img src="images/xbox/icons8-xbox-rt-50.png" alt="up" class="img-gamepad-button"/> Semitones
-                    </div>
-                </div>
-            </div>
+                <p class="text-muted small text-center">Build with love by <a
+                        href="https://twitter.com/jcvasselon/">Jean-Christophe VASSELON</a>.</p>
 
-            <div class="row">
-                <div class="col-4">
-                    <div class="tone-button" id="left_tone_3">
-                        <img src="images/xbox/icons8-xbox-lb-50.png" alt="up" class="img-gamepad-button"/> Minor
-                    </div>
-                </div>
-            </div>
+                <p class="text-muted small text-center">Icons from <a href="https://icons8.com/">Icons8</a></p>
+                <p class="text-muted small text-center">Fork me on <a href="https://github.com/JC144/FF7-Musical-UI" alt="github">Github</a></p>
 
-            <div class="row mt-3">
-                <div class="col-4">
-                    <div class="outer mx-auto">
-                        <div class="line line0"></div>
-                        <div class="line line1"></div>
-                        <div class="line line2"></div>
-                        <div class="line line3"></div>
-
-                        <div id="left_note_0" class="note_0"></div>
-                        <div id="left_note_1" class="note_1"></div>
-                        <div id="left_note_2" class="note_2"></div>
-                        <div id="left_note_3" class="note_3"></div>
-                        <div id="left_note_4" class="note_4">l</div>
-                        <div id="left_note_5" class="note_5"></div>
-                        <div id="left_note_6" class="note_6"></div>
-                        <div id="left_note_7" class="note_7"></div>
-
-                        <div class="mid">
-                            <div class="inner" id="leftAxis">L</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="outer mx-auto">
-                        <div class="line line0"></div>
-                        <div class="line line1"></div>
-                        <div class="line line2"></div>
-                        <div class="line line3"></div>
-
-                        <div id="right_note_0" class="note_0"></div>
-                        <div id="right_note_1" class="note_1"></div>
-                        <div id="right_note_2" class="note_2"></div>
-                        <div id="right_note_3" class="note_3"></div>
-                        <div id="right_note_4" class="note_4"></div>
-                        <div id="right_note_5" class="note_5"></div>
-                        <div id="right_note_6" class="note_6"></div>
-                        <div id="right_note_7" class="note_7"></div>
-
-                        <div class="mid">
-                            <div class="inner" id="rightAxis">R</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-4">
-
-                </div>
-                <div class="col-4 align-self-end">
-                    <div class="octaves">
-                        <p id="octaveLabel" class="text-center mt-3 mb-0 label">Change octave</p>
-                        <div class="octave-button mb-0">
-                            <div id="octaveDown"><img src="images/xbox/icons8-xbox-x-50.png" alt="up" class="img-gamepad-button"/></div>
-                            <div id="octave-bullet-0" class="octave-bullet"></div>
-                            <div id="octave-bullet-1" class="octave-bullet"></div>
-                            <div id="octave-bullet-2" class="octave-bullet"></div>
-                            <div id="octave-bullet-3" class="octave-bullet"></div>
-                            <div id="octave-bullet-4" class="octave-bullet"></div>
-                            <div id="octave-bullet-5" class="octave-bullet"></div>
-                            <div id="octaveUp"><img src="images/xbox/icons8-xbox-b-50.png" alt="up" class="img-gamepad-button"/></div>
-                        </div>
-                        <p id="octaveInit" class="text-center label"><img src="images/xbox/icons8-xbox-a-50.png" alt="up" class="img-gamepad-button"/> Reinitialize octave</p>
-                    </div>
-                </div>
+                <p class="text-muted small text-center">
+                    If you like my experiments, feel free to buy me a coffee!<br />
+                </p>
+                <a class="text-center" href="https://www.paypal.com/donate/?hosted_button_id=3FRF77WQDZXUU"><button
+                        class="btn btn-primary">Give a tip!</button></a>
             </div>
         </div>
+    </footer>
 
-    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>

@@ -1,12 +1,18 @@
 body {
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-.main {
-    display: flex;
+h1 a {
+    text-decoration: none;
+    color: #000;
+}
+
+.player-div {
     justify-content: center;
     align-items: center;
-    height: 100vh;
 }
 
 .outer {
