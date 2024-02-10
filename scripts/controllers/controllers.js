@@ -12,6 +12,7 @@ class Controllers {
     updateStatus() {
         this.gamepad.scangamepads();
         this.controller = this.gamepad.controllers[0];
+        
         this.#setUIButtons();
 
         this.#getKeysPressed();
@@ -45,7 +46,7 @@ class Controllers {
 
     #getKeysPressed() {
         this.keysPressed = [];
-        if (this.controller !== undefined) {
+        if (this.controller !== undefined && this.controller !== null) {
             for (let i = 0; i < this.controller.buttons.length; i++) {
                 this.keysPressed[i] = this.controller.buttons[i].pressed;
             }
@@ -59,7 +60,7 @@ class Controllers {
     }
 
     #setUIButtons() {
-        if (!this.controller) {
+        if (this.controller === undefined || this.controller === null) {
             document.getElementById('button_lt').style.display = 'none';
             document.getElementById('button_rt').style.display = 'none';
             document.getElementById('button_lb').style.display = 'none';
