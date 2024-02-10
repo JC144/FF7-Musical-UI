@@ -9,7 +9,7 @@ document.getElementById('startAudioContext').addEventListener('click', function 
     const app = new App(audio);
     document.getElementById('startMessage').style.display = 'none';
     document.getElementById('player-div').style.display = 'flex';
-    
+
     let languagePicker = document.getElementById("languages");
 
     //get navigator language and set picker
@@ -20,5 +20,18 @@ document.getElementById('startAudioContext').addEventListener('click', function 
         languagePicker.value = "fr";
     } else if (this.language.includes("es")) {
         languagePicker.value = "es";
+    }
+
+    if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen();
+    }
+    else if (document.documentElement.webkitRequestFullscreen) {
+        document.documentElement.webkitRequestFullscreen();
+    }
+    else if (document.documentElement.mozRequestFullScreen) {
+        document.documentElement.mozRequestFullScreen();
+    }
+    else if (document.documentElement.msRequestFullscreen) {
+        document.documentElement.msRequestFullscreen();
     }
 });

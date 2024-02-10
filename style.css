@@ -241,7 +241,11 @@ h1 a {
 }
 
 @media screen and (orientation:landscape) {
+    body {
+        overflow: auto;
+    }
+
     #header {
         display: none !important;
     }
-  }
+}
