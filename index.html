@@ -11,13 +11,9 @@
 </head>
 
 <body>
-    <div class="d-flex flex-column col-lg-8 mx-auto p-4 py-md-5 flex-grow-1">
-        <header class="d-flex flex-column align-items-center pb-3 mb-3 border-bottom" id="header">
-            <h1 class="display-5"><a href="index.html">FFVII Music UI</a></h1>            
-        </header>
-
+    <div class="d-flex flex-column col-lg-8 mx-auto p-4 py-md-1 flex-grow-1">
         <main class="flex-grow-1">
-            
+
             <div class="main container" id="startMessage" style="display: block;">
                 <p>You all have seen <a href="https://twitter.com/HollowRiku/status/1755276974644236470">this cute UI to
                         play
@@ -30,6 +26,7 @@
 
             <div class="main align-items-center" id="player-div" style="display: none;">
                 <div class="container">
+
                     <div class="row">
                         <select id="languages" aria-label="Pick your language" class="form-select ml-auto">
                             <option value="en" selected>English</option>
@@ -37,40 +34,26 @@
                             <option value="es">Castellano</option>
                         </select>
                     </div>
+
+
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-2">
                             <div class="tone-button" id="left_tone_1">
                                 <img src="images/xbox/icons8-scroll-up-50.png" alt="up" class="img-gamepad-button" />
                                 <span id="tons_label">Tons</span>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-4">
                             <div class="tone-button" id="left_tone_2">
                                 <img src="images/xbox/icons8-xbox-lt-50.png" alt="up" class="img-gamepad-button" />
                                 <span id="left_semitones_label">Semitones</span>
                             </div>
-                        </div>
-                        <div class="col-4 align-self-end">
-                            <div class="tone-button" id="right_tone_1">
-                                <img src="images/xbox/icons8-xbox-rt-50.png" alt="up" class="img-gamepad-button" />
-                                <span id="right_semitones_label">Semitones</span>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-4">
                             <div class="tone-button" id="left_tone_3">
                                 <img src="images/xbox/icons8-xbox-lb-50.png" alt="up" class="img-gamepad-button" />
                                 <span id="minor_label">Minor</span>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row mt-3">
                         <div class="col-4">
                             <div class="outer mx-auto" id="leftInstrument">
                                 <div class="line line0"></div>
@@ -92,6 +75,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-4">
                             <div class="outer mx-auto" id="rightInstrument">
                                 <div class="line line0"></div>
@@ -113,15 +97,20 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="col-2">
+                            <div class="tone-button" id="right_tone_1">
+                                <img src="images/xbox/icons8-xbox-rt-50.png" alt="up" class="img-gamepad-button" />
+                                <span id="right_semitones_label">Semitones</span>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-4">
-
-                        </div>
-                        <div class="col-4 align-self-end">
+                        <div class="col-12 align-self-center">
                             <div class="octaves">
-                                <p id="octaveLabel" class="text-center mt-3 mb-0 label"> <span id="change_octave_label">Change
+                                <p id="octaveLabel" class="text-center mt-3 mb-0 label"> <span
+                                        id="change_octave_label">Change
                                         octave</span></p>
                                 <div class="octave-button mb-0">
                                     <div id="octaveDown"><img src="images/xbox/icons8-xbox-x-50.png" alt="up"
