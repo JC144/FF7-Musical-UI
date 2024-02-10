@@ -1,7 +1,7 @@
 class GamePad {
     constructor(gamepadConnectedEventCallback) {
         this.gamepadConnectedEventCallback = gamepadConnectedEventCallback;
-        this.keysPressed = [];
+        
         this.haveEvents = 'GamepadEvent' in window;
         this.haveWebkitEvents = 'WebKitGamepadEvent' in window;
         this.controllers = {};
@@ -15,12 +15,6 @@ class GamePad {
             if (gamepads[i] && (gamepads[i].index in this.controllers)) {
                 this.controllers[gamepads[i].index] = gamepads[i];
             }
-        }
-    }
-
-    reinitiliazeKeysPressed() {
-        for (let i = 0; i < this.keysPressed.length; i++) {
-            this.keysPressed[i] = this.controllers[0].buttons[i].pressed;
         }
     }
 

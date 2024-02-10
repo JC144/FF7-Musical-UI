@@ -1,12 +1,13 @@
 import { Ui } from './ui.js';
 import { Notes } from './notes.js';
-import { GamePad } from './gamepad.js';
+import { Controllers } from './controllers/controllers.js';
 
 class App {
     constructor(audio) {
         this.audio = audio;
         this.notes = new Notes(audio);
-        this.gamepad = new GamePad(this.updateStatus.bind(this));
+        this.controllers = new Controllers(this.updateStatus.bind(this));
+        this.previousKeysPressed = this.controllers.keysPressed;
 
         this.rAF = (window.mozRequestAnimationFrame ||
             window.webkitRequestAnimationFrame ||
@@ -14,44 +15,43 @@ class App {
 
         this.ui = new Ui(this.notes.leftNotes, this.notes.rightNotes);
         this.ui.draw(0, 0, this.notes.octave, [0, 0, 0, 0]);
+        this.updateStatus();
     }
 
     updateStatus() {
-        this.gamepad.scangamepads();
-        var controller = this.gamepad.controllers[0];
+        this.controllers.updateStatus();
 
-        if (controller) {
-            let leftCurrentTone = 0;
+        let leftCurrentTone = 0;
 
-            if (controller.buttons[12].pressed) {
-                leftCurrentTone = 1;
-            }
-            else if (controller.buttons[6].pressed) {
-                leftCurrentTone = 2;
-            }
-            else if (controller.buttons[4].pressed) {
-                leftCurrentTone = 3;
-            }
-
-            if (controller.buttons[1].pressed && this.gamepad.keysPressed[1] === false) {
-                this.gamepad.keysPressed[1] = true;
-                this.notes.incrementOctave();
-            }
-            if (controller.buttons[2].pressed && this.gamepad.keysPressed[2] === false) {
-                this.gamepad.keysPressed[2] = true;
-                this.notes.decrementOctave();
-            }
-            if (controller.buttons[0].pressed) {
-                this.notes.reinitializeOctave();
-            }
-
-            let rightCurrentTone = (controller.buttons[7].pressed) ? 1 : 0;
-
-            this.notes.findAndPlayCorrespondingNotes(leftCurrentTone, rightCurrentTone, controller.axes);
-
-            this.gamepad.reinitiliazeKeysPressed();
-            this.ui.draw(leftCurrentTone, rightCurrentTone, this.notes.octave, controller.axes);
+        if (this.controllers.keysPressed[12]) {
+            leftCurrentTone = 1;
         }
+        else if (this.controllers.keysPressed[6]) {
+            leftCurrentTone = 2;
+        }
+        else if (this.controllers.keysPressed[4]) {
+            leftCurrentTone = 3;
+        }
+
+        if (this.controllers.keysPressed[1] && this.previousKeysPressed[1] === false) {
+            this.controllers.keysPressed[1] = true;
+            this.notes.incrementOctave();
+        }
+        if (this.controllers.keysPressed[2] && this.previousKeysPressed[2] === false) {
+            this.controllers.keysPressed[2] = true;
+            this.notes.decrementOctave();
+        }
+        if (this.controllers.keysPressed[0]) {
+            this.notes.reinitializeOctave();
+        }
+
+        let rightCurrentTone = (this.controllers.keysPressed[7]) ? 1 : 0;
+
+        this.previousKeysPressed = this.controllers.keysPressed;
+
+        this.notes.findAndPlayCorrespondingNotes(leftCurrentTone, rightCurrentTone, this.controllers.axes);
+
+        this.ui.draw(leftCurrentTone, rightCurrentTone, this.notes.octave, this.controllers.axes);
 
         (window.mozRequestAnimationFrame ||
             window.webkitRequestAnimationFrame ||
