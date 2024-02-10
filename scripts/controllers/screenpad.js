@@ -1,5 +1,10 @@
 class ScreenPad {
     constructor() {
+        this.keysPressed = [];
+        for (let i = 0; i < 17; i++) {
+            this.keysPressed[i] = false;
+        }
+
         this.leftTouchID = null;
         this.leftStartAxes = [0, 0];
         this.leftAxes = [0, 0];
@@ -24,6 +29,15 @@ class ScreenPad {
 
         this.leftInstrument.addEventListener('touchcancel', this.#touchEnd.bind(this));
         this.rightInstrument.addEventListener('touchcancel', this.#touchEnd.bind(this));
+
+        document.getElementById('left_tone_1').addEventListener('click', this.#buttonClicked.bind(this));
+        document.getElementById('left_tone_2').addEventListener('click', this.#buttonClicked.bind(this));
+        document.getElementById('left_tone_3').addEventListener('click', this.#buttonClicked.bind(this));
+        document.getElementById('right_tone_1').addEventListener('click', this.#buttonClicked.bind(this));
+        document.getElementById('octaveDown').addEventListener('click', this.#buttonClicked.bind(this));
+        document.getElementById('octaveUp').addEventListener('click', this.#buttonClicked.bind(this));
+        document.getElementById('octaveInit').addEventListener('click', this.#buttonClicked.bind(this));
+
     }
 
     #touchStart(e) {
@@ -90,6 +104,36 @@ class ScreenPad {
         else {
             return val;
         }
+    }
+
+    #buttonClicked(e) {
+        const id = e.currentTarget.id;
+        if(id.includes('left_tone_1')){
+            this.keysPressed[12] = !this.keysPressed[12];
+        }
+        else if(id.includes('left_tone_2')){
+            this.keysPressed[6] = !this.keysPressed[6];
+        }
+        else if(id.includes('left_tone_3')){
+            this.keysPressed[4] = !this.keysPressed[4];
+        }
+        else if(id.includes('right_tone_1')){
+            this.keysPressed[7] = !this.keysPressed[7];
+        }
+        else if(id.includes('octaveDown')){
+            this.keysPressed[2] = true;
+        }
+        else if(id.includes('octaveUp')){
+            this.keysPressed[1] = true;
+        }
+        else if(id.includes('octaveInit')){
+            this.keysPressed[0] = true;
+        }
+    }
+    reinitOctaveButtons(){
+        this.keysPressed[0] = false;
+        this.keysPressed[1] = false;
+        this.keysPressed[2] = false;
     }
 }
 export { ScreenPad };

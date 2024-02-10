@@ -12,6 +12,7 @@ class Controllers {
     updateStatus() {
         this.gamepad.scangamepads();
         this.controller = this.gamepad.controllers[0];
+        this.#setUIButtons();
 
         this.#getKeysPressed();
 
@@ -23,7 +24,7 @@ class Controllers {
             this.axes[0] = this.controller.axes[0];
             this.axes[1] = this.controller.axes[1];
         }
-        else{
+        else {
             this.axes[0] = 0;
             this.axes[1] = 0;
         }
@@ -36,7 +37,7 @@ class Controllers {
             this.axes[2] = this.controller.axes[2];
             this.axes[3] = this.controller.axes[3];
         }
-        else{
+        else {
             this.axes[2] = 0;
             this.axes[3] = 0;
         }
@@ -50,9 +51,31 @@ class Controllers {
             }
         }
         else {
-            for (let i = 0; i < 17; i++) {
-                this.keysPressed[i] = false;
+            for (let i = 0; i < this.screenPad.keysPressed.length; i++) {
+                this.keysPressed[i] = this.screenPad.keysPressed[i];
             }
+            this.screenPad.reinitOctaveButtons();
+        }
+    }
+
+    #setUIButtons() {
+        if (!this.controller) {
+            document.getElementById('button_lt').style.display = 'none';
+            document.getElementById('button_rt').style.display = 'none';
+            document.getElementById('button_lb').style.display = 'none';
+            document.getElementById('button_a').style.display = 'none';
+            document.getElementById('button_b').style.display = 'none';
+            document.getElementById('button_x').style.display = 'none';
+            document.getElementById('button_up').style.display = 'none';
+        }
+        else {
+            document.getElementById('button_lt').style.display = 'block';
+            document.getElementById('button_rt').style.display = 'block';
+            document.getElementById('button_lb').style.display = 'block';
+            document.getElementById('button_a').style.display = 'block';
+            document.getElementById('button_b').style.display = 'block';
+            document.getElementById('button_x').style.display = 'block';
+            document.getElementById('button_up').style.display = 'block';
         }
     }
 }
