@@ -106,7 +106,7 @@ h1 a {
     cursor: pointer;
 }
 
-.circle-btn .img-gamepad-button{
+.circle-btn .img-gamepad-button {
     margin: -2px;
 }
 
@@ -246,12 +246,39 @@ h1 a {
     color: #FFF;
 }
 
-@media screen and (orientation:landscape) {
-    body {
-        overflow: auto;
+#rotate-device {
+    display: none;
+}
+
+@media (max-width: 1000px) {
+    .col-lg-12 {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+    
+    .container,
+    .container-md,
+    .container-sm {
+        max-width: 100%;
+    }    
+}
+
+@media (min-width: 793px) {
+    #app {
+        display: flex;
     }
 
-    #header {
+    #rotate-device {
+        display: none !important;
+    }
+}
+
+@media (max-width: 792px) {
+    #rotate-device {
+        display: flex;
+    }
+
+    #app {
         display: none !important;
     }
 }

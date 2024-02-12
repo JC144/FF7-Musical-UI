@@ -109,12 +109,18 @@ class ScreenPad {
     #buttonClicked(e) {
         const id = e.currentTarget.id;
         if(id.includes('left_tone_1')){
+            this.keysPressed[6] = false;
+            this.keysPressed[4] = false;
             this.keysPressed[12] = !this.keysPressed[12];
         }
         else if(id.includes('left_tone_2')){
+            this.keysPressed[12] = false;
+            this.keysPressed[4] = false;
             this.keysPressed[6] = !this.keysPressed[6];
         }
         else if(id.includes('left_tone_3')){
+            this.keysPressed[12] = false;
+            this.keysPressed[6] = false;
             this.keysPressed[4] = !this.keysPressed[4];
         }
         else if(id.includes('right_tone_1')){
@@ -130,6 +136,7 @@ class ScreenPad {
             this.keysPressed[0] = true;
         }
     }
+    
     reinitOctaveButtons(){
         this.keysPressed[0] = false;
         this.keysPressed[1] = false;

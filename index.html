@@ -11,15 +11,24 @@
 </head>
 
 <body>
-    <div class="d-flex flex-column col-lg-12 mx-0 py-md-1 flex-grow-1">
-        <main class="flex-grow-1">
+    <div id="rotate-device" class="d-flex flex-column col-lg-12 mx-0 py-md-1 flex-grow-1">
+        <div class="d-flex align-self-center mx-auto flex-grow-1">
+            <div class="text-center align-self-center">
+                Please rotate your device to landscape mode.
+                <br />
+                <img alt="rotate screen" src="images/screenpad/icons8-reset-50.png" width="50" height="50" />
+            </div>
+        </div>
+    </div>
 
-            <div class="main container" id="startMessage" style="display: block;">
+    <div class="d-flex flex-column col-lg-12 mx-0 py-md-1 flex-grow-1" id="app">
+        <main class="flex-grow-1">
+            <div class="main container text-center" id="startMessage" style="display: block;">
                 <p>You all have seen <a href="https://twitter.com/HollowRiku/status/1755276974644236470">this cute UI to
                         play
                         music on FF VII Rebirth?</a></p>
                 <p>I did, and I thought it could be fun to reproduce it with javascript!</p>
-                <p>So plug your gamepad and click the start button!</p>
+                <p>So plug your gamepad or get ready to use your fingers and click the start button!</p>
 
                 <button id="startAudioContext" class="btn-primary btn">Start!</button>
             </div>

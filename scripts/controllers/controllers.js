@@ -88,10 +88,11 @@ class Controllers {
             button_lt.style.display = 'none';
             button_rt.style.display = 'none';
             button_lb.style.display = 'none';
-            button_a.style.display = 'none';
-            button_b.style.display = 'none';
-            button_x.style.display = 'none';
             button_up.style.display = 'none';
+
+            button_x.src = "images/screenpad/icons8-minus-50.png";
+            button_b.src = "images/screenpad/icons8-plus-50.png";
+            button_a.src = "images/screenpad/icons8-reset-50.png";
         }
         else {
             button_lt.style.display = 'block';
@@ -101,6 +102,7 @@ class Controllers {
             button_b.style.display = 'block';
             button_x.style.display = 'block';
             button_up.style.display = 'block';
+            button_a.style = "";
             //PS5
             if (this.controller.axes.length > 4) {
                 button_lt.src = "images/playstation/PS5_L2.png";
