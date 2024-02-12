@@ -21,6 +21,7 @@ class Controllers {
             this.axes[0] = this.screenPad.leftAxes[0];
             this.axes[1] = this.screenPad.leftAxes[1];
         }
+        //Xbox and PS5 works the same for left controller
         else if (this.controller) {
             this.axes[0] = this.controller.axes[0];
             this.axes[1] = this.controller.axes[1];

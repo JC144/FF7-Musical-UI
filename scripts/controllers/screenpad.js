@@ -42,11 +42,11 @@ class ScreenPad {
 
     #touchStart(e) {
         for (const touch of e.touches) {
-            if (e.currentTarget.id == "leftAxis" && this.leftTouchID === null) {
+            if (e.currentTarget.id == "leftAxis" && this.leftTouchID === null && touch != this.rightTouchID) {
                 this.leftTouchID = touch.identifier;
                 this.leftStartAxes = [touch.clientX, touch.clientY];
             }
-            else if (e.currentTarget.id == "rightAxis" && this.rightTouchID === null) {
+            else if (e.currentTarget.id == "rightAxis" && this.rightTouchID === null && touch != this.leftTouchID) {
                 this.rightTouchID = touch.identifier;
                 this.rightStartAxes = [touch.clientX, touch.clientY];
             }
@@ -56,16 +56,16 @@ class ScreenPad {
     #touchMove(e) {
         e.preventDefault();
         if (this.leftTouchID !== null) {
-            const touch = this.#getTouchByID(e.touches, this.leftTouchID);
-            if (touch) {
-                this.leftAxes = [this.#prepareCoordinate(touch.clientX - this.leftStartAxes[0]), this.#prepareCoordinate(touch.clientY - this.leftStartAxes[1])];
+            const leftTouch = this.#getTouchByID(e.touches, this.leftTouchID);
+            if (leftTouch) {
+                this.leftAxes = [this.#prepareCoordinate(leftTouch.clientX - this.leftStartAxes[0]), this.#prepareCoordinate(leftTouch.clientY - this.leftStartAxes[1])];
             }
         }
 
         if (this.rightTouchID !== null) {
-            const touch = this.#getTouchByID(e.touches, this.rightTouchID);
-            if (touch) {
-                this.rightAxes = [this.#prepareCoordinate(touch.clientX - this.rightStartAxes[0]), this.#prepareCoordinate(touch.clientY - this.rightStartAxes[1])];
+            const rightTouch = this.#getTouchByID(e.touches, this.rightTouchID);
+            if (rightTouch) {
+                this.rightAxes = [this.#prepareCoordinate(rightTouch.clientX - this.rightStartAxes[0]), this.#prepareCoordinate(rightTouch.clientY - this.rightStartAxes[1])];
             }
         }
     }
@@ -75,9 +75,11 @@ class ScreenPad {
             for (const touch of e.changedTouches) {
                 if (touch.identifier === this.leftTouchID) {
                     this.leftTouchID = null;
+                    this.leftStartAxes = [0, 0];
                     this.leftAxes = [0, 0];
                 } else if (touch.identifier === this.rightTouchID) {
                     this.rightTouchID = null;
+                    this.rightStartAxes = [0, 0];
                     this.rightAxes = [0, 0];
                 }
             }
@@ -108,36 +110,36 @@ class ScreenPad {
 
     #buttonClicked(e) {
         const id = e.currentTarget.id;
-        if(id.includes('left_tone_1')){
+        if (id.includes('left_tone_1')) {
             this.keysPressed[6] = false;
             this.keysPressed[4] = false;
             this.keysPressed[12] = !this.keysPressed[12];
         }
-        else if(id.includes('left_tone_2')){
+        else if (id.includes('left_tone_2')) {
             this.keysPressed[12] = false;
             this.keysPressed[4] = false;
             this.keysPressed[6] = !this.keysPressed[6];
         }
-        else if(id.includes('left_tone_3')){
+        else if (id.includes('left_tone_3')) {
             this.keysPressed[12] = false;
             this.keysPressed[6] = false;
             this.keysPressed[4] = !this.keysPressed[4];
         }
-        else if(id.includes('right_tone_1')){
+        else if (id.includes('right_tone_1')) {
             this.keysPressed[7] = !this.keysPressed[7];
         }
-        else if(id.includes('octaveDown')){
+        else if (id.includes('octaveDown')) {
             this.keysPressed[2] = true;
         }
-        else if(id.includes('octaveUp')){
+        else if (id.includes('octaveUp')) {
             this.keysPressed[1] = true;
         }
-        else if(id.includes('octaveInit')){
+        else if (id.includes('octaveInit')) {
             this.keysPressed[0] = true;
         }
     }
-    
-    reinitOctaveButtons(){
+
+    reinitOctaveButtons() {
         this.keysPressed[0] = false;
         this.keysPressed[1] = false;
         this.keysPressed[2] = false;
