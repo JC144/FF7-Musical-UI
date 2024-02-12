@@ -42,11 +42,11 @@ class ScreenPad {
 
     #touchStart(e) {
         for (const touch of e.touches) {
-            if (e.currentTarget.id == "leftAxis" && this.leftTouchID === null && touch != this.rightTouchID) {
+            if (e.currentTarget.id == "leftAxis" && this.leftTouchID === null && touch.identifier != this.rightTouchID) {
                 this.leftTouchID = touch.identifier;
                 this.leftStartAxes = [touch.clientX, touch.clientY];
             }
-            else if (e.currentTarget.id == "rightAxis" && this.rightTouchID === null && touch != this.leftTouchID) {
+            else if (e.currentTarget.id == "rightAxis" && this.rightTouchID === null && touch.identifier != this.leftTouchID) {
                 this.rightTouchID = touch.identifier;
                 this.rightStartAxes = [touch.clientX, touch.clientY];
             }
