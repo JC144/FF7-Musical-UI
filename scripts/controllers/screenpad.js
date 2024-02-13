@@ -95,8 +95,8 @@ class ScreenPad {
         return null;
     }
 
-    #prepareCoordinate(val) {
-        val = val / 100;
+    #prepareCoordinate(val) {    
+        val = val / 50;
         if (val < -1) {
             return -1;
         }
