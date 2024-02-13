@@ -5,6 +5,8 @@ es = {
     minor: "menor",
     change_octave: "Cambiar octava",
     reinitialize_octave: "Reiniciar octava",
+    change_chord: "Cambiar acorde",
+    reinitialize_chord: "Reiniciar acorde",
     do: "Do",
     re: "Re",
     mi: "Mi",

@@ -5,6 +5,8 @@ fr = {
     minor: "mineur",
     change_octave: "Changer octave",
     reinitialize_octave: "Réinitialiser octave",
+    change_chord: "Changer accord",
+    reinitialize_chord: "Réinitialiser accord",
     do: "Do",
     re: "Re",
     mi: "Mi",

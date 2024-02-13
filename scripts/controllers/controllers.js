@@ -73,6 +73,7 @@ class Controllers {
                 this.keysPressed[i] = this.screenPad.keysPressed[i];
             }
             this.screenPad.reinitOctaveButtons();
+            this.screenPad.reinitChordButtons();
         }
     }
 

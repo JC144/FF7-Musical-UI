@@ -128,7 +128,8 @@ class ScreenPad {
         else if (id.includes('right_tone_1')) {
             this.keysPressed[7] = !this.keysPressed[7];
         }
-        else if (id.includes('octaveDown')) {
+        
+        if (id.includes('octaveDown')) {
             this.keysPressed[2] = true;
         }
         else if (id.includes('octaveUp')) {
@@ -137,12 +138,28 @@ class ScreenPad {
         else if (id.includes('octaveInit')) {
             this.keysPressed[0] = true;
         }
+
+        if (id.includes('chordDown')) {
+            this.keysPressed[14] = true;
+        }
+        else if (id.includes('chordUp')) {
+            this.keysPressed[15] = true;
+        }
+        else if (id.includes('chordInit')) {
+            this.keysPressed[13] = true;
+        }
     }
 
     reinitOctaveButtons() {
         this.keysPressed[0] = false;
         this.keysPressed[1] = false;
         this.keysPressed[2] = false;
+    }
+
+    reinitChordButtons() {
+        this.keysPressed[12] = false;
+        this.keysPressed[13] = false;
+        this.keysPressed[14] = false;
     }
 }
 export { ScreenPad };

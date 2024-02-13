@@ -14,7 +14,7 @@ class App {
             window.requestAnimationFrame);
 
         this.ui = new Ui(this.notes.leftNotes, this.notes.rightNotes);
-        this.ui.draw(0, 0, this.notes.octave, [0, 0, 0, 0]);
+        this.ui.draw(0, 0, this.notes.octave, this.notes.chord, [0, 0, 0, 0]);
         this.updateStatus();
     }
 
@@ -45,13 +45,25 @@ class App {
             this.notes.reinitializeOctave();
         }
 
+        if (this.controllers.keysPressed[15] && this.previousKeysPressed[15] === false) {
+            this.controllers.keysPressed[15] = true;
+            this.notes.incrementChord();
+        }
+        if (this.controllers.keysPressed[14] && this.previousKeysPressed[14] === false) {
+            this.controllers.keysPressed[14] = true;
+            this.notes.decrementChord();
+        }
+        if (this.controllers.keysPressed[13]) {
+            this.notes.reinitializeChord();
+        }
+
         let rightCurrentTone = (this.controllers.keysPressed[7]) ? 1 : 0;
 
         this.previousKeysPressed = this.controllers.keysPressed;
 
         this.notes.findAndPlayCorrespondingNotes(leftCurrentTone, rightCurrentTone, this.controllers.axes);
 
-        this.ui.draw(leftCurrentTone, rightCurrentTone, this.notes.octave, this.controllers.axes);
+        this.ui.draw(leftCurrentTone, rightCurrentTone, this.notes.octave, this.notes.chord, this.controllers.axes);
 
         (window.mozRequestAnimationFrame ||
             window.webkitRequestAnimationFrame ||

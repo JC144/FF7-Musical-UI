@@ -7,7 +7,7 @@ class Ui {
         this.#translate();
     }
 
-    draw(leftTone, rightTone, octave, sticksAxes) {
+    draw(leftTone, rightTone, octave, chord, sticksAxes) {
         let languagePicker = document.getElementById("languages");
         if (this.language != languagePicker.value) {
             this.language = languagePicker.value;
@@ -33,8 +33,12 @@ class Ui {
         for (let i = 0; i < 6; i++) {
             document.getElementById('octave-bullet-' + i).style.backgroundColor = 'white';
         }
-
         document.getElementById('octave-bullet-' + (octave - 1)).style.backgroundColor = 'black';
+
+        for (let i = 0; i < 9; i++) {
+            document.getElementById('chord-bullet-' + i).style.backgroundColor = 'white';
+        }
+        document.getElementById('chord-bullet-' + (chord - 1)).style.backgroundColor = 'black';
 
         this.leftNotes[leftTone].forEach(note => {
             document.getElementById(note.domId).innerText = this.#getNoteName(note);
