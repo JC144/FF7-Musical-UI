@@ -20,12 +20,18 @@ class ScreenPad {
 
         this.leftAxis.addEventListener('touchstart', this.#touchStart.bind(this));
         this.rightAxis.addEventListener('touchstart', this.#touchStart.bind(this));
+        this.leftAxis.addEventListener('mousedown', this.#mouseStart.bind(this));
+        this.rightAxis.addEventListener('mousedown', this.#mouseStart.bind(this));
 
         this.leftInstrument.addEventListener('touchmove', this.#touchMove.bind(this));
         this.rightInstrument.addEventListener('touchmove', this.#touchMove.bind(this));
+        this.leftInstrument.addEventListener('mousemove', this.#mouseMove.bind(this));
+        this.rightInstrument.addEventListener('mousemove', this.#mouseMove.bind(this));
 
         this.leftInstrument.addEventListener('touchend', this.#touchEnd.bind(this));
         this.rightInstrument.addEventListener('touchend', this.#touchEnd.bind(this));
+        this.leftInstrument.addEventListener('mouseup', this.#mouseEnd.bind(this));
+        this.rightInstrument.addEventListener('mouseup', this.#mouseEnd.bind(this));
 
         this.leftInstrument.addEventListener('touchcancel', this.#touchEnd.bind(this));
         this.rightInstrument.addEventListener('touchcancel', this.#touchEnd.bind(this));
@@ -37,7 +43,49 @@ class ScreenPad {
         document.getElementById('octaveDown').addEventListener('click', this.#buttonClicked.bind(this));
         document.getElementById('octaveUp').addEventListener('click', this.#buttonClicked.bind(this));
         document.getElementById('octaveInit').addEventListener('click', this.#buttonClicked.bind(this));
+        document.getElementById('chordDown').addEventListener('click', this.#buttonClicked.bind(this));
+        document.getElementById('chordUp').addEventListener('click', this.#buttonClicked.bind(this));
+        document.getElementById('chordInit').addEventListener('click', this.#buttonClicked.bind(this));
 
+    }
+
+    #mouseStart(e) {
+        e.preventDefault();
+        if (e.currentTarget.id == "leftAxis") {
+            this.leftTouchID = true;
+            this.leftStartAxes = [e.clientX, e.clientY];
+        }
+        else if (e.currentTarget.id == "rightAxis") {
+            this.rightTouchID = true;
+            this.rightStartAxes = [e.clientX, e.clientY];
+        }
+    }
+
+    #mouseMove(e) {
+        if (this.leftTouchID) {
+            e.preventDefault();
+            this.leftAxes = [this.#prepareCoordinate(e.clientX - this.leftStartAxes[0]), this.#prepareCoordinate(e.clientY - this.leftStartAxes[1])];
+        }
+        else if (this.rightTouchID) {
+            e.preventDefault();
+            this.rightAxes = [this.#prepareCoordinate(e.clientX - this.rightStartAxes[0]), this.#prepareCoordinate(e.clientY - this.rightStartAxes[1])];
+        }
+    }
+
+    #mouseEnd(e) {
+        if (this.leftTouchID) {
+            e.preventDefault();
+            this.leftTouchID = null;
+            this.leftStartAxes = [0, 0];
+            this.leftAxes = [0, 0];
+        }
+
+        if (this.rightTouchID) {
+            e.preventDefault();
+            this.rightTouchID = null;
+            this.rightStartAxes = [0, 0];
+            this.rightAxes = [0, 0];
+        }
     }
 
     #touchStart(e) {
@@ -95,7 +143,7 @@ class ScreenPad {
         return null;
     }
 
-    #prepareCoordinate(val) {    
+    #prepareCoordinate(val) {
         val = val / 50;
         if (val < -1) {
             return -1;
@@ -128,7 +176,7 @@ class ScreenPad {
         else if (id.includes('right_tone_1')) {
             this.keysPressed[7] = !this.keysPressed[7];
         }
-        
+
         if (id.includes('octaveDown')) {
             this.keysPressed[2] = true;
         }
@@ -157,9 +205,9 @@ class ScreenPad {
     }
 
     reinitChordButtons() {
-        this.keysPressed[12] = false;
         this.keysPressed[13] = false;
         this.keysPressed[14] = false;
+        this.keysPressed[15] = false;
     }
 }
 export { ScreenPad };
